@@ -29,7 +29,7 @@ class _RootPageState extends State<RootPage> {
   List<IconData> iconList = const [
     Icons.home,
     Icons.favorite,
-    Icons.shopping_cart,
+    Icons.shopping_basket_rounded,
     Icons.person
   ];
 
@@ -46,6 +46,7 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -60,6 +61,7 @@ class _RootPageState extends State<RootPage> {
             ),
           ],
         ),
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
       ),
