@@ -1,4 +1,5 @@
 import 'package:firebasewithflutter/const/AppColors.dart';
+import 'package:firebasewithflutter/ui/root_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'login_screen.dart';
@@ -23,7 +24,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         actions: [
           Padding(padding: const  EdgeInsets.only(right: 20, top: 20),
             child: InkWell(
-              onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (_)=>const Login())),
+              onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (_)=>const RootPage())),
               child: const Text('Skip', style: TextStyle(
                 color: Colors.grey,
                 fontSize: 16.0,
@@ -81,7 +82,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                        _pageController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                      }
                    }else{
-                     Navigator.push(context, MaterialPageRoute(builder: (_)=>const Login()));
+                     Navigator.push(context, MaterialPageRoute(builder: (_)=>const RootPage()));
                    }
                  });
                },
