@@ -28,32 +28,33 @@ class _HomePageState extends State<HomePage> {
 
     //Toggle favorite button
 
-    bool toggleIsFavorated(bool isFavorated){
+    bool toggleIsFavorated(bool isFavorated) {
       return !isFavorated;
     }
 
-
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16.0
-                    ),
-                    width: size.width * .9,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.search, color: Constants.blackColor.withOpacity(.6),),
-                      const  Expanded(child: TextField(
+        body: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  width: size.width * .9,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.search,
+                        color: Constants.blackColor.withOpacity(.6),
+                      ),
+                      const Expanded(
+                        child: TextField(
                           showCursor: false,
                           decoration: InputDecoration(
                             hintText: 'Search Plant',
@@ -62,43 +63,58 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                        Icon(Icons.mic, color: Constants.blackColor.withOpacity(.6),),
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: Constants.primaryColor.withOpacity(.1),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+                      Icon(
+                        Icons.mic,
+                        color: Constants.blackColor.withOpacity(.6),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                  decoration: BoxDecoration(
+                    color: Constants.primaryColor.withOpacity(.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              ],
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
-              height: 50,
-              width: size.width,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: _plantTypes.length,
-                itemBuilder: (BuildContext contex, int index){
-                  return Padding(padding: EdgeInsets.all(8.0), child: GestureDetector(
-                    onTap: (){
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 12.0),
+            height: 50,
+            width: size.width,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: _plantTypes.length,
+              itemBuilder: (BuildContext contex, int index) {
+                return Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () {
                       setState(() {
                         seletctedIndex = index;
                       });
                     },
-                    child: Text(_plantTypes[index], style: TextStyle(fontSize: 16.0, fontWeight: seletctedIndex == index ? FontWeight.bold : FontWeight.w300, color: seletctedIndex == index ? Constants.primaryColor : Constants.blackColor),),
-                  ),);
-
-                },
-              ),
+                    child: Text(
+                      _plantTypes[index],
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: seletctedIndex == index
+                              ? FontWeight.bold
+                              : FontWeight.w300,
+                          color: seletctedIndex == index
+                              ? Constants.primaryColor
+                              : Constants.blackColor),
+                    ),
+                  ),
+                );
+              },
             ),
-            SizedBox(
-              height: size.height*.3,
-              child: ListView.builder(
+          ),
+          SizedBox(
+            height: size.height * .3,
+            child: ListView.builder(
               itemCount: _plantList.length,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext context, int index){
+              itemBuilder: (BuildContext context, int index) {
                 return Container(
                   width: 200,
                   margin: EdgeInsets.symmetric(horizontal: 10),
@@ -111,10 +127,12 @@ class _HomePageState extends State<HomePage> {
                           height: 50,
                           width: 50,
                           child: IconButton(
-                            onPressed: (){
+                            onPressed: () {
                               print("Clieck");
                             },
-                            icon: Icon(_plantList[index].isFavorated == true ? Icons.favorite : Icons.favorite_border),
+                            icon: Icon(_plantList[index].isFavorated == true
+                                ? Icons.favorite
+                                : Icons.favorite_border),
                             color: Constants.primaryColor,
                             iconSize: 30,
                           ),
@@ -129,32 +147,46 @@ class _HomePageState extends State<HomePage> {
                         right: 50,
                         top: 50,
                         bottom: 50,
-                        child: Image.asset(_plantList[index].imageURL),),
+                        child: Image.asset(_plantList[index].imageURL),
+                      ),
                       Positioned(
                         bottom: 15,
                         left: 20,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(_plantList[index].category, style: TextStyle(color: Colors.white70, fontSize: 16),),
-                            Text(_plantList[index].plantName, style: TextStyle(
-                              color: Colors.white70, fontSize: 15,
-                              fontWeight: FontWeight.bold
-                            ),),
-
+                            Text(
+                              _plantList[index].category,
+                              style: TextStyle(
+                                  color: Colors.white70, fontSize: 16),
+                            ),
+                            Text(
+                              _plantList[index].plantName,
+                              style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ],
-                        ),),
+                        ),
+                      ),
                       Positioned(
                         bottom: 15,
                         right: 20,
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Text(r'$' + _plantList[index].price.toString(), style: TextStyle(color: Constants.primaryColor, fontSize: 16),),
-                        ),),
+                          child: Text(
+                            r'$' + _plantList[index].price.toString(),
+                            style: TextStyle(
+                                color: Constants.primaryColor, fontSize: 16),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   decoration: BoxDecoration(
@@ -163,11 +195,87 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               },
-              ),
             ),
-          ],
-        ),
-      )
-    );
+          ),
+          Container(
+              padding: const EdgeInsets.only(left: 16, bottom: 20, top: 20),
+            child: Text("New Plant", style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            height: size.height*5,
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: _plantList.length,
+              physics: BouncingScrollPhysics(),
+              itemBuilder: (BuildContext context, int index){
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Constants.primaryColor.withOpacity(.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 80,
+                  padding: EdgeInsets.only(left: 10, top: 10),
+                  margin: EdgeInsets.only(bottom: 10, top: 10),
+                  width: size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: Constants.primaryColor.withOpacity(.8),
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 5,
+                            left: 0,
+                            right: 0,
+                            child: SizedBox(
+                              height: 80,
+                              child: Image.asset(_plantList[index].imageURL),
+                            ),),
+                          Positioned(
+                            left: 80,
+                            top: 4,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(_plantList[index].category),
+                                Text(_plantList[index].plantName, style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Constants.blackColor
+                                ),),
+                              ],
+                            ),),
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Text(r'$' + _plantList[index].price.toString(), style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Constants.primaryColor
+                        ),),
+                      ),
+                    ],
+                  ),
+                );
+            },),
+          ),
+        ],
+      ),
+    ));
   }
 }
