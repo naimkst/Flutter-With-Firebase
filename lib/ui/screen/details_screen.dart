@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:firebasewithflutter/const/AppColors.dart';
 import 'package:firebasewithflutter/models/plants.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,10 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  bool toggleIsFavorated(bool isFavorated) {
+    return !isFavorated;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -53,11 +58,20 @@ class _DetailsPageState extends State<DetailsPage> {
                       borderRadius: BorderRadius.circular(25),
                       color: Constants.primaryColor.withOpacity(.15),
                     ),
-                    child: Icon(
-                      _plantList[widget.plantId].isFavorated
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: Constants.primaryColor,
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          bool isFavoited = toggleIsFavorated(
+                              _plantList[widget.plantId].isFavorated);
+                          _plantList[widget.plantId].isFavorated = isFavoited;
+                        });
+                      },
+                      icon: Icon(
+                        _plantList[widget.plantId].isFavorated
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: Constants.primaryColor,
+                      ),
                     ),
                   ),
                 ),

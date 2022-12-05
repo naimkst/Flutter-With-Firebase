@@ -16,9 +16,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     int seletctedIndex = 0;
     Size size = MediaQuery.of(context).size;
-
     List<Plant> _plantList = Plant.plantList;
-
     //List of categories
     List<String> _plantTypes = [
       'Recommended',
@@ -27,9 +25,7 @@ class _HomePageState extends State<HomePage> {
       'Garden',
       'Supplement'
     ];
-
     //Toggle favorite button
-
     bool toggleIsFavorated(bool isFavorated) {
       return !isFavorated;
     }
